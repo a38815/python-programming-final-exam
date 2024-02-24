@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+    app:
+        image: flask-app:latest
+        build:
+            context: .
+            dockerfile: Dockerfile
+        restart: always
+        container_name: flask-app
+        ports:
+            - '5000:5000'
+        volumes:
+            - ./data-app:/app/static
+        networks:
+            - backend
+        depends_on:
+            - mongodb
+
+    mongodb:
+        image: mongo:6.0
+        container_name: mongodb
+        command: mongod --auth # enable authentication
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: password
+            MONGODB_HOSTNAME: mongodb
+        ports:
+            - 27017:27017
+        volumes:
+            - ./data:/data/db
+        networks:
+            - backend
+
+networks:
+    backend:
+        driver: bridge
+
+volumes:
+    data-app:
+    data:

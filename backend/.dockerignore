@@ -1,0 +1,10 @@
+client/
+.venv/
+.idea/
+*.pyc
+.gitignore
+__pycache__/
+.git/
+.python-version
+README.md
+data/

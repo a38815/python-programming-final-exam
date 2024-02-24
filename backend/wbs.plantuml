@@ -1,0 +1,14 @@
+' Work Breakdown Structure (WBS)
+@startwbs wbs
+* Web giới thiệu sản phẩm
+
+** Quản lý sản phẩm
+*** Thêm sản phẩm
+*** Sửa sản phẩm
+*** Xóa sản phẩm
+
+** Quản lý danh mục
+*** Thêm danh mục
+*** Sửa danh mục
+*** Xóa danh mục
+@endwbs

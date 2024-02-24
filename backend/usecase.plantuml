@@ -1,0 +1,34 @@
+@startuml usecase
+left to right direction
+
+actor Admin as a
+actor User as u
+
+package "Application" {
+    (Quản lý sản phẩm) as qlsp
+    (Quản lý danh mục) as qldm
+    (Đăng nhập) as dn
+    (Đăng xuất) as dx
+    (Xem sản phẩm) as xsp
+    a -up-> qlsp 
+    a -up-> qldm
+
+    qlsp -down-> (Thêm sản phẩm)
+    qlsp -up-> (Xóa sản phẩm)
+    qlsp -down-> (Sửa sản phẩm)
+
+    qldm -down-> (Xem đơn hàng)
+    qldm -up-> (Xóa đơn hàng)
+    qldm -down-> (Sửa đơn hàng)
+
+    qlsp .left.> dn : <<include>>
+    qldm .up.> dn : <<include>>
+
+    dx .left.> dn : <<extend>>
+
+    u -> xsp
+}
+
+@enduml
+
+

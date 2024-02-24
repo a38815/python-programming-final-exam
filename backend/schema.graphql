@@ -1,0 +1,95 @@
+type Product {
+    _id: ID!
+    name: String!
+    price: Float
+    description: String
+    image: String
+    category: Category!
+}
+
+type Category {
+    _id: ID!
+    name: String!
+    products: [Product]
+}
+
+type User {
+    _id: ID!
+    name: String
+    age: Int
+    email: String!
+    password: String!
+}
+
+type AuthPayload {
+    token: String!
+    user: User!
+}
+
+input ProductInput {
+    name: String!
+    price: Float
+    description: String
+    image: String
+    categoryId: ID!
+}
+
+input CategoryInput {
+    name: String!
+}
+
+input ProductInputUpdate {
+    name: String
+    price: Float
+    description: String
+    image: String
+    categoryId: ID
+}
+
+input CategoryInputUpdate {
+    name: String
+}
+
+input UserInput {
+    name: String
+    age: Int
+    email: String!
+    password: String!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input PaginationInput {
+    page: Int
+    limit: Int
+    order: String
+    sortBy: String
+}
+
+type Mutation {
+    createProduct(input: ProductInput!): Product
+    updateProduct(_id: ID!, input: ProductInputUpdate!): Product
+    deleteProduct(_id: ID!): Product
+
+    createCategory(input: CategoryInput!): Category
+    updateCategory(_id: ID!, input: CategoryInputUpdate!): Category
+    deleteCategory(_id: ID!): Category
+
+    createUser(input: UserInput!): AuthPayload
+
+    login(input: LoginInput!): AuthPayload
+}
+
+type Query {
+    products(input: PaginationInput): [Product]!
+    product(_id: ID!): Product
+
+    categories(input: PaginationInput): [Category]!
+    category(_id: ID!): Category
+
+    users(input: PaginationInput): [User]!
+    user(_id: ID!): User
+}
